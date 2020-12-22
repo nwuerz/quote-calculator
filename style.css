@@ -1,0 +1,40 @@
+.container {
+  text-align: center;
+  margin-top: 20%;
+}
+
+.jumbotron {
+  background-color: aliceblue;
+}
+
+.submitBtn {
+  background-color: rgb(36, 36, 121);
+  color: white;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border: currentColor;
+  padding: 10px 30px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.submitBtn:hover {
+  background-color: rgb(72, 72, 136);
+}
+
+.title {
+  margin-bottom: 30px;
+}
+
+#spinner {
+  color: rgb(36, 36, 121);
+}
+
+.hideDiv {
+  display: none;
+}
+
+.showDiv {
+  display: block;
+  background-color: aliceblue;
+}

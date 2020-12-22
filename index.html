@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar sticky-top">
+      <a href="https://xtrahandcleaning.com/">Go Back</a>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+
+        <div id="startDiv" class="jumbotron col-md-12">
+          <h1 class="title">X-Tra Hand Cleaning Quote Calculator</h1>
+          <h5>Answer a few quick questions to get a quote!</h5>
+          <button id="startBtn" class="submitBtn" type="button">GET STARTED</button>
+        </div>
+
+        <div id="sfDiv" class="jumbotron col-md-12 hideDiv">
+          <h2 class="title">What's your approximate square footage?</h2>
+          <input id="squareFeet" maxlength="5" />
+          <button id="sfBtn" class="row submitBtn" type="button">next</button>
+        </div>
+
+        <div id="bedsDiv" class="jumbotron col-md-12 hideDiv">
+            <h2 class="title">How many bedrooms?</h2>
+            <input id="beds" maxlength="2" />
+            <button id="bedsBtn" class="row submitBtn" type="button">next</button>
+        </div>
+
+        <div id="bathsDiv" class="jumbotron col-md-12 hideDiv">
+            <h2 class="title">How many bathrooms?</h2>
+            <input id="baths" maxlength="2" />
+            <button id="bathsBtn" class="row submitBtn" type="button">next</button>
+        </div>
+
+        <div id="previousDiv" class="jumbotron col-md-12 hideDiv">
+            <h2 >My property been professionally cleaned in the past 2 months</h2>
+            <button value="hasBeenCleaned" class="submitBtn previousBtn" type="button">yes</button>
+            <button value="hasNotBeenCleaned" class="submitBtn previousBtn" type="button">no</button>
+        </div>
+
+        <div id="petsDiv" class="jumbotron col-md-12 hideDiv">
+            <h2 >Do you have animals?</h2>
+            <button value="hasPets" class="submitBtn petsBtn" type="button">yes</button>
+            <button value="noPets" class="submitBtn petsBtn" type="button">no</button>
+        </div>
+
+        <div id="loadingDiv" class="jumbotron col-md-12 hideDiv">
+            <h2 >Got it! One moment while we crunch the numbers...</h2>
+            <div id="spinner" class="spinner-border" role="status">
+            </div>
+        </div>
+
+      </div>
+    </div>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
