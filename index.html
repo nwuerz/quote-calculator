@@ -29,30 +29,30 @@
 
         <div id="sfDiv" class="jumbotron col-md-12 hideDiv">
           <h2 class="title">What's your approximate square footage?</h2>
-          <input id="squareFeet" maxlength="5" />
+          <input type="number" id="squareFeet" maxlength="5" />
           <button id="sfBtn" class="row submitBtn" type="button">next</button>
         </div>
 
         <div id="bedsDiv" class="jumbotron col-md-12 hideDiv">
             <h2 class="title">How many bedrooms?</h2>
-            <input id="beds" maxlength="2" />
+            <input type="number" id="beds" maxlength="2" />
             <button id="bedsBtn" class="row submitBtn" type="button">next</button>
         </div>
 
         <div id="bathsDiv" class="jumbotron col-md-12 hideDiv">
             <h2 class="title">How many bathrooms?</h2>
-            <input id="baths" maxlength="2" />
+            <input type="number" id="baths" maxlength="2" />
             <button id="bathsBtn" class="row submitBtn" type="button">next</button>
         </div>
 
         <div id="previousDiv" class="jumbotron col-md-12 hideDiv">
-            <h2 >My property been professionally cleaned in the past 2 months</h2>
+            <h2 >Has your property been professionally cleaned in the past 2 months?</h2>
             <button value="hasBeenCleaned" class="submitBtn previousBtn" type="button">yes</button>
             <button value="hasNotBeenCleaned" class="submitBtn previousBtn" type="button">no</button>
         </div>
 
         <div id="petsDiv" class="jumbotron col-md-12 hideDiv">
-            <h2 >Do you have animals?</h2>
+            <h2 >Do you have animals(excluding children)?</h2>
             <button value="hasPets" class="submitBtn petsBtn" type="button">yes</button>
             <button value="noPets" class="submitBtn petsBtn" type="button">no</button>
         </div>
@@ -63,7 +63,56 @@
             </div>
         </div>
 
-      </div>
+        <div class="quoteDiv hideDiv" >
+          <div class="jumbotron col-md-12">
+            <h2>Select an option and recieve an additional 15% discount when you purchase within the next 5 days!</h2>
+            <table class="table">
+              <div class="form-check">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><input class="form-check-input" type="checkbox" value=""></th>
+                  <td>Weekly</td>
+                  <td id="weeklyPrice">$$</td>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                  </th>
+                  <td>Semi-Monthly</td>
+                  <td id="SemiMonthlyPrice">$$</td>
+                </tr>
+                <tr>
+                  <th scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></th>
+                  <td>Monthly</td>
+                  <td id="monthlyPrice">$$</td>
+                </tr>
+                <tr>
+                  <th scope="row"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></th>
+                  <td>One Time</td>
+                  <td id="oneTimePrice">$$</td>
+                </tr>
+              </tbody>
+            </div>
+            </table>
+          </div>
+          <div class="formInputs">
+            <input style="margin: 30px;" class="col-md-4" maxlength="20" type="text" placeholder="First Name">
+            <input style="margin: 30px;" class="col-md-4" maxlength="20" type="text" placeholder="Last Name">
+          </div>
+          <div class="formInputs">
+            <input style="margin: 30px;" class="col-md-4" maxlength="20" type="email" placeholder="Email">
+            <input style="margin: 30px;" class="col-md-4" maxlength="20" type="tel" placeholder="Phone Number">
+          </div>
+          <button class="row submitBtn" type="button">submit quote</button>
+        </div>
+        </div>
     </div>
     <script src="questions.js"></script>
     <script src="script.js"></script>

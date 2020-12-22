@@ -22,14 +22,25 @@ $(document).ready(() => {
   const previousDiv = $('#previousDiv');
   const petsDiv = $('#petsDiv');
   const loadingDiv = $('#loadingDiv');
-
+  const quoteDiv = $('.quoteDiv');
 
   const toggleVisbility = (button, divToHide, divToShow) => {
     button.on('click', () => {
       divToHide.attr('class', 'hideDiv');
       divToShow.attr('class', 'showDiv');
     })
-  }
+  };
+
+  const delayedVisibility = (button, divToHide, divToShow, delayedDiv) => {
+    button.on('click', () => {
+      divToHide.attr('class', 'hideDiv');
+      divToShow.attr('class', 'showDiv');
+      setTimeout(() => {
+        divToShow.attr('class', 'hideDiv');
+        delayedDiv.attr('class', 'showDiv');
+      }, 2000);
+    })
+  };
 
   const init = () => {
     toggleVisbility(startBtn, startDiv, sfDiv);
@@ -37,8 +48,15 @@ $(document).ready(() => {
     toggleVisbility(bedsBtn, bedsDiv, bathsDiv);
     toggleVisbility(bathsBtn, bathsDiv, previousDiv);
     toggleVisbility(previousBtn, previousDiv, petsDiv);
-    toggleVisbility(petsBtn, petsDiv, loadingDiv);
+    delayedVisibility(petsBtn, petsDiv, loadingDiv, quoteDiv);
   }
+
+  // const calculatePrice = (squareFeet, newCust, hasPets) => {
+  //   const oneTime = squareFeet * .10;
+  //   const monthly = squareFeet * .08;
+  //   const semiMonthly = squareFeet * .07;
+  //   const weekly = squareFeet * .05;
+  // }
 
   init();
 });

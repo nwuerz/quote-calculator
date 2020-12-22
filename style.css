@@ -38,3 +38,8 @@
   display: block;
   background-color: aliceblue;
 }
+
+.formInputs {
+  flex-direction: row;
+  align-items: center;
+}
