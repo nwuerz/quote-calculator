@@ -43,3 +43,10 @@
   flex-direction: row;
   align-items: center;
 }
+
+/* remove input arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
