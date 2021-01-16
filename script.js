@@ -25,10 +25,15 @@ $(document).ready(() => {
 
   // table data
   const weekDisplay = $('#weeklyPrice');
+  const weeklyCheckbox = $('#weeklyQuote');
   const semiMonthlyDisplay = $('#semiMonthlyPrice');
+  const semiMonthlyCheckbox = $('#semiMonthlyQuote');
   const monthlyPriceDisplay = $('#monthlyPrice');
+  const monthlyCheckbox = $('#monthlyQuote');
   const oneTimePriceDisplay = $('#oneTimePrice'); 
-  
+  const oneTimeCheckbox = $('#oneTimeQuote');
+  const checkboxes = $('.checkbox');
+
   // values
   let cleanedRecently = true;
   let hasPets = true;
@@ -48,7 +53,7 @@ $(document).ready(() => {
       divToHide.attr('class', 'hideDiv');
       divToShow.attr('class', 'showDiv');
     })
-  };
+  }
 
   const calculatePrice = () => {
     let squareFeet = $('#squareFeet').val().trim();
@@ -81,17 +86,31 @@ $(document).ready(() => {
       divToShow.attr('class', 'showDiv');
       setTimeout(() => {
         divToShow.attr('class', 'hideDiv');
-        delayedDiv.attr('class', 'showDiv');
+        delayedDiv.attr('class', 'showDiv quoteDiv');
       }, 2000)
       calculatePrice();
     });
-  };
+  }
 
   const enableButton = (input, button) => {
     input.on('keyup', () => {
       button.attr('disabled', false);
     });
-  };
+  }
+
+  handleCheckboxClicks = () => {
+    quoteDiv.on('click', (e) => {
+    if (e.target.className === 'checkbox') {
+      let checkedBox = e.target;
+
+      for (let i = 0; i < checkboxes.length; i++) {
+        let uncheckedBox = checkboxes[i];
+        uncheckedBox.checked = false;
+      }
+      checkedBox.checked = true;
+    }
+    })
+  }
 
   const init = () => {
     toggleVisbility(startBtn, startDiv, sfDiv);
@@ -109,6 +128,7 @@ $(document).ready(() => {
       hasPets = false;
     });
     delayedVisibility(petsBtn, petsDiv, loadingDiv, quoteDiv);
+    handleCheckboxClicks();
   }
 
   init();
