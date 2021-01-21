@@ -41,7 +41,7 @@
 
 .formInputs {
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
 }
 
 /* remove input arrows */

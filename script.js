@@ -22,21 +22,22 @@ $(document).ready(() => {
   const sfInput = $('#squareFeet');
   const bedInput = $('#beds');
   const bathInput = $('#baths');
+  const finalDiv = $('#finalDiv');
 
   // table data
+  const form = $('form');
   const weekDisplay = $('#weeklyPrice');
-  const weeklyCheckbox = $('#weeklyQuote');
   const semiMonthlyDisplay = $('#semiMonthlyPrice');
-  const semiMonthlyCheckbox = $('#semiMonthlyQuote');
   const monthlyPriceDisplay = $('#monthlyPrice');
-  const monthlyCheckbox = $('#monthlyQuote');
   const oneTimePriceDisplay = $('#oneTimePrice'); 
-  const oneTimeCheckbox = $('#oneTimeQuote');
   const checkboxes = $('.checkbox');
 
   // values
   let cleanedRecently = true;
   let hasPets = true;
+  let firstName = $('#first-name'); 
+  let lastName = $('#last-name');
+  let phoneNumber = $('#phone-number');
 
   const pricing = {
     once: .10,
@@ -98,18 +99,18 @@ $(document).ready(() => {
     });
   }
 
-  handleCheckboxClicks = () => {
-    quoteDiv.on('click', (e) => {
-    if (e.target.className === 'checkbox') {
-      let checkedBox = e.target;
-
-      for (let i = 0; i < checkboxes.length; i++) {
-        let uncheckedBox = checkboxes[i];
-        uncheckedBox.checked = false;
+  const verifyUserInfo = () => {
+    form.on('submit', (e) => {
+      console.log(`first name - ${firstName.val()}, last name - ${lastName.val()}, phone number ${phoneNumber.val()}`)
+      if(firstName.val() === '' && lastName.val() === '' && phoneNumber.val().length < 10 ) {
+        e.preventDefault();
+        alert('fill the form out the right way, you stupid piece of shit.');
+      } else {
+        e.preventDefault();
+        quoteDiv.attr('class', 'hideDiv');
+        finalDiv.attr('class', 'showDiv');
       }
-      checkedBox.checked = true;
-    }
-    })
+    });
   }
 
   const init = () => {
@@ -128,8 +129,10 @@ $(document).ready(() => {
       hasPets = false;
     });
     delayedVisibility(petsBtn, petsDiv, loadingDiv, quoteDiv);
-    handleCheckboxClicks();
+    // handleCheckboxClicks();
+    verifyUserInfo();
   }
 
   init();
+
 });

@@ -14,12 +14,8 @@
     ></script>
   </head>
   <body>
-    <nav class="navbar sticky-top">
-      <a href="https://xtrahandcleaning.com/">Go Back</a>
-    </nav>
 
     <div class="container">
-      <div class="row">
 
         <div id="startDiv" class="jumbotron col-md-12">
           <h1 class="title">X-Tra Hand Cleaning Quote Calculator</h1>
@@ -63,62 +59,104 @@
             </div>
         </div>
 
-        <div class="quoteDiv hideDiv" >
+          <!-- <form   action="https://formspree.io/f/xvovdekj" method="POST"> -->
+        <form class="quoteDiv ">
           <div class="jumbotron col-md-12">
             <h2>Select an option and recieve an additional 15% discount when you purchase within the next 5 days!</h2>
             <table class="table">
               <div class="form-check">
-              <thead>
+              
+                <thead>
                 <tr>
                   <th scope="col"></th>
                   <th scope="col">Frequency</th>
-                  <th scope="col">Price</th>
+                  <th scope="col">Price Per Cleaning</th>
                 </tr>
               </thead>
+              
               <tbody>
-                <tr>
-                  <th scope="row">
-                    <input id="weeklyQuote" class="checkbox" type="checkbox" checked>
-                  </th>
-                  <td>Weekly</td>
-                  <td id="weeklyPrice">$$</td>
+                <!-- weekly row -->
+                <tr class="table-row">
+                  <td>
+                    <input id="weeklyQuote" name="radio-input" class="checkbox" type="radio">
+                  </td>
+                  <td>
+                    <label for="weeklyQuote">Weekly</label>
+                  </td>
+                  <td>
+                    <label for="weeklyQuote" id="weeklyPrice">please call</label>
+                  </td>
                 </tr>
-                <tr>
-                  <th scope="row">
-                    <input id="semiMonthlyQuote" class="checkbox" type="checkbox" value="" >
-                  </th>
-                  <td>Semi-Monthly</td>
-                  <td id="semiMonthlyPrice">$$</td>
+                <!-- semi monthly row -->
+                <tr class="table-row">
+                  <td>
+                    <input id="semiMonthlyQuote" name="radio-input" class="checkbox" type="radio">
+                  </td>
+                  <td>
+                    <label for="semiMonthlyQuote">Semi-Monthly</label>
+                  </td>
+                  <td>
+                    <label for="semiMonthlyQuote" id="semiMonthlyPrice">please call</label>
+                  </td>
                 </tr>
-                <tr>
-                  <th scope="row">
-                    <input id="monthlyQuote" class="checkbox" type="checkbox" value="">
-                  </th>
-                  <td>Monthly</td>
-                  <td id="monthlyPrice">$$</td>
+                <!-- monthly row -->
+                <tr class="table-row">
+                  <td>
+                    <input id="monthlyQuote" name="radio-input" class="checkbox" type="radio">
+                  </td>
+                  <td>
+                    <label for="monthlyQuote">Monthly</label>
+                  </td>
+                  <td>
+                    <label for="monthlyQuote" id="monthlyPrice">please call</label>
+                  </td>
                 </tr>
-                <tr>
-                  <th scope="row">
-                    <input id="oneTimeQuote" class="checkbox" type="checkbox" value="">
-                  </th>
-                  <td>One Time</td>
-                  <td id="oneTimePrice">$$</td>
+                <!-- one time row -->
+                <tr class="table-row">
+                  <td>
+                    <input id="oneTimeQuote" name="radio-input" class="checkbox" type="radio">
+                  </td>
+                  <td>
+                    <label for="oneTimeQuote">One Time</label>
+                  </td>
+                  <td id="oneTimePrice">
+                    <label for="oneTimeQuote">please call</label>
+                  </td>
                 </tr>
+
               </tbody>
             </div>
             </table>
-          </div>
+
           <div class="formInputs">
-            <input style="margin: 30px;" class="col-md-4" maxlength="20" type="text" placeholder="First Name">
-            <input style="margin: 30px;" class="col-md-4" maxlength="20" type="text" placeholder="Last Name">
+            <label for="first-name">First Name:</label>
+            <br>
+            <input  id="first-name" maxlength="20" type="text" name="first-name" placeholder="First Name">
+            <br>
+            <label for="last-name">Last Name:</label>
+            <br>
+            <input  id="last-name" maxlength="20" type="text" name="last-name" placeholder="Last Name">
+            <br>
+            <label for="email">Email:</label>
+            <br>
+            <input  id="email" maxlength="20" type="email" name="email"placeholder="Email">
+            <br>
+            <label for="phone-number">Phone Number:</label>
+            <br>
+            <input  id="phone-number" maxlength="20" type="tel" name="them-digits" placeholder="(555)555-555">
           </div>
-          <div class="formInputs">
-            <input style="margin: 30px;" class="col-md-4" maxlength="20" type="email" placeholder="Email">
-            <input style="margin: 30px;" class="col-md-4" maxlength="20" type="tel" placeholder="Phone Number">
+          <button class="row submitBtn" id="submit-button" type="submit" >submit quote</button>
+          
           </div>
-          <button class="row submitBtn" disabled>submit quote</button>
+        </form>
+
+        <div id="finalDiv" class="jumbotron col-md-12 hideDiv">
+          <h1 class="title">Thanks!</h1>
+          <h5>A representative will contact you soon! </h5>
+          <button id="startBtn" class="submitBtn">www.xtrahandcleaning.com</button>
+          <button id="startBtn" class="submitBtn">www.nickwuerz.com</button>
         </div>
-        </div>
+
     </div>
     <script src="script.js"></script>
   </body>
