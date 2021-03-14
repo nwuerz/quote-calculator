@@ -24,31 +24,26 @@ $(document).ready(() => {
   const bathInput = $('#baths');
   const finalDiv = $('#finalDiv');
 
-  // table data
+  // table display elements
   const form = $('form');
   const weekDisplay = $('#weeklyPrice');
   const semiMonthlyDisplay = $('#semiMonthlyPrice');
   const monthlyPriceDisplay = $('#monthlyPrice');
-  const oneTimePriceDisplay = $('#oneTimePrice'); 
-  const checkboxes = $('.checkbox');
+  const oneTimePriceDisplay = $('#oneTimePrice');
+  const weekDiscounted = $('#discountWeekly');
+  const semiMonthlyDiscounted = $('#discountSemiMonthly');
+  const monthlyDiscounted = $('#discountMonthly');
+  const onceTimeDiscounted = $('#discountOnce');
 
-  // values
+  // input values
   let cleanedRecently = true;
   let hasPets = true;
   let firstName = $('#first-name'); 
   let lastName = $('#last-name');
   let phoneNumber = $('#phone-number');
 
-  const pricing = {
-    once: .10,
-    monthly: .08,
-    semiMonthly: .07,
-    weekly: .05
-  };
 
-  const { once, monthly, semiMonthly, weekly } = pricing;
-
-  // ------------------  //
+  // helper functions  //
   const toggleVisbility = (button, divToHide, divToShow) => {
     button.on('click', () => {
       divToHide.attr('class', 'hideDiv');
@@ -56,29 +51,62 @@ $(document).ready(() => {
     })
   }
 
-  const calculatePrice = () => {
+  const calculatePrices = () => {
+
+    const pricing = {
+      once: .10,
+      monthly: .08,
+      semiMonthly: .07,
+      weekly: .05
+    };
+
+    const { once, monthly, semiMonthly, weekly } = pricing;
+
     let squareFeet = $('#squareFeet').val().trim();
 
-    let oneTimePrice = (squareFeet * once).toFixed(2);
-    let weeklyPrice = (squareFeet * weekly).toFixed(2);
-    let semiMonthlyPrice = (squareFeet * semiMonthly).toFixed(2);
-    let monthlyPrice = (squareFeet * monthly).toFixed(2);
+    let oneTimePrice = (squareFeet * once);
+    let weeklyPrice = (squareFeet * weekly);
+    let semiMonthlyPrice = (squareFeet * semiMonthly);
+    let monthlyPrice = (squareFeet * monthly);
 
-    hasPets === true ?  petTax = .03 : petTax = 0;
-    cleanedRecently === true ? discount = .05 : discount = 0;
+    let petTax = hasPets === true ? .03 : 0;
+    let cleanDiscount = cleanedRecently === true ? .05 : 0;
 
-    oneTimePrice = oneTimePrice - (oneTimePrice * discount) + (oneTimePrice * petTax);
-    weeklyPrice = weeklyPrice - (weeklyPrice * discount) + (weeklyPrice * petTax);
-    semiMonthlyPrice = semiMonthlyPrice - (semiMonthlyPrice * discount) + (semiMonthlyPrice * petTax);
-    monthlyPrice = monthlyPrice - (monthlyPrice * discount) + (monthlyPrice * petTax);
+    oneTimePrice = (oneTimePrice - (oneTimePrice * cleanDiscount) + (oneTimePrice * petTax)).toFixed(2);
+    weeklyPrice = (weeklyPrice - (weeklyPrice * cleanDiscount) + (weeklyPrice * petTax)).toFixed(2);
+    semiMonthlyPrice = (semiMonthlyPrice - (semiMonthlyPrice * cleanDiscount) + (semiMonthlyPrice * petTax)).toFixed(2);
+    monthlyPrice = (monthlyPrice - (monthlyPrice * cleanDiscount) + (monthlyPrice * petTax)).toFixed(2);
 
-    console.log(oneTimePrice + " - one time price")
+    let basePricing = [oneTimePrice, weeklyPrice, semiMonthlyPrice, monthlyPrice]
+    let discountedPricing = applyDiscount(basePricing);
 
+    return [basePricing, discountedPricing];
+  }
 
-    weekDisplay.text(`$${weeklyPrice.toFixed(2)}`);
-    oneTimePriceDisplay.text(`$${oneTimePrice.toFixed(2)}`);
-    semiMonthlyDisplay.text(`$${semiMonthlyPrice.toFixed(2)}`);
-    monthlyPriceDisplay.text(`$${monthlyPrice.toFixed(2)}`);
+  const applyDiscount = arr => {
+    let discountedPrices = arr.map(price => {
+      let discountedPrice = (price - (price * .15));
+      return discountedPrice.toFixed(2);
+    })
+    return discountedPrices;
+  }
+
+  const displayPrices = () => {
+    let priceOptions = calculatePrices();
+    let basePrices = priceOptions[0];
+    let discountedPrices = priceOptions[1];
+
+    // base pricing display
+    weekDisplay.text(`$${basePrices[0]}`);
+    semiMonthlyDisplay.text(`$${basePrices[1]}`);
+    monthlyPriceDisplay.text(`$${basePrices[2]}`);
+    oneTimePriceDisplay.text(`$${basePrices[3]}`);
+
+    // discounted pricing display
+    weekDiscounted.text(`$${discountedPrices[0]}`);
+    semiMonthlyDiscounted.text(`$${discountedPrices[1]}`);
+    monthlyDiscounted.text(`$${discountedPrices[2]}`);
+    onceTimeDiscounted.text(`$${discountedPrices[3]}`);
   }
 
   const delayedVisibility = (button, divToHide, divToShow, delayedDiv) => {
@@ -89,7 +117,7 @@ $(document).ready(() => {
         divToShow.attr('class', 'hideDiv');
         delayedDiv.attr('class', 'showDiv quoteDiv');
       }, 2000)
-      calculatePrice();
+      displayPrices();
     });
   }
 

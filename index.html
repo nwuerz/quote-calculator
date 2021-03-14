@@ -26,31 +26,31 @@
         <div id="sfDiv" class="jumbotron col-md-12 hideDiv">
           <h2 class="title">What's your approximate square footage?</h2>
           <input type="number" id="squareFeet"/>
-          <button id="sfBtn" class="row submitBtn" disabled>next</button>
+          <button id="sfBtn" class="row submitBtn" disabled>NEXT</button>
         </div>
 
         <div id="bedsDiv" class="jumbotron col-md-12 hideDiv">
             <h2 class="title">How many bedrooms?</h2>
             <input type="number" id="beds" maxlength="2" />
-            <button id="bedsBtn" class="row submitBtn" disabled>next</button>
+            <button id="bedsBtn" class="row submitBtn" disabled>NEXT</button>
         </div>
 
         <div id="bathsDiv" class="jumbotron col-md-12 hideDiv">
             <h2 class="title">How many bathrooms?</h2>
             <input type="number" id="baths" maxlength="2" />
-            <button id="bathsBtn" class="row submitBtn" disabled>next</button>
+            <button id="bathsBtn" class="row submitBtn" disabled>NEXT</button>
         </div>
 
         <div id="previousDiv" class="jumbotron col-md-12 hideDiv">
             <h2 >Has your property been professionally cleaned in the past 2 months?</h2>
-            <button class="submitBtn previousBtn">yes</button>
-            <button id="cleanedRecently" class="submitBtn previousBtn">no</button>
+            <button class="submitBtn previousBtn">YES</button>
+            <button id="cleanedRecently" class="submitBtn previousBtn">NO</button>
         </div>
 
         <div id="petsDiv" class="jumbotron col-md-12 hideDiv">
             <h2 >Do you have animals?</h2>
-            <button class="submitBtn petsBtn">yes</button>
-            <button id="hasPets" class="submitBtn petsBtn">no</button>
+            <button class="submitBtn petsBtn">YES</button>
+            <button id="hasPets" class="submitBtn petsBtn">NO</button>
         </div>
 
         <div id="loadingDiv" class="jumbotron col-md-12 hideDiv">
@@ -60,7 +60,8 @@
         </div>
 
           <!-- <form   action="https://formspree.io/f/xvovdekj" method="POST"> -->
-        <form class="quoteDiv ">
+        <form class="quoteDiv hideDiv">
+          
           <div class="jumbotron col-md-12">
             <h2>Select an option and recieve an additional 15% discount when you purchase within the next 5 days!</h2>
             <table class="table">
@@ -71,6 +72,7 @@
                   <th scope="col"></th>
                   <th scope="col">Frequency</th>
                   <th scope="col">Price Per Cleaning</th>
+                  <th scope="col">Discounted Price</th>
                 </tr>
               </thead>
               
@@ -86,6 +88,9 @@
                   <td>
                     <label for="weeklyQuote" id="weeklyPrice">please call</label>
                   </td>
+                  <td>
+                    <label for="weeklyQuote" id="discountWeekly">please call</label> 
+                  </td>
                 </tr>
                 <!-- semi monthly row -->
                 <tr class="table-row">
@@ -93,10 +98,13 @@
                     <input id="semiMonthlyQuote" name="radio-input" class="checkbox" type="radio">
                   </td>
                   <td>
-                    <label for="semiMonthlyQuote">Semi-Monthly</label>
+                    <label style="display: inline" for="semiMonthlyQuote">Semi Monthly</label>
                   </td>
                   <td>
                     <label for="semiMonthlyQuote" id="semiMonthlyPrice">please call</label>
+                  </td>
+                  <td>
+                    <label for="semiMonthlyQuote" id="discountSemiMonthly">please call</label>
                   </td>
                 </tr>
                 <!-- monthly row -->
@@ -110,6 +118,9 @@
                   <td>
                     <label for="monthlyQuote" id="monthlyPrice">please call</label>
                   </td>
+                  <td>
+                    <label for="monthlyQuote" id="discountMonthly">please call</label>
+                  </td>
                 </tr>
                 <!-- one time row -->
                 <tr class="table-row">
@@ -119,8 +130,11 @@
                   <td>
                     <label for="oneTimeQuote">One Time</label>
                   </td>
-                  <td id="oneTimePrice">
-                    <label for="oneTimeQuote">please call</label>
+                  <td>
+                    <label for="oneTimeQuote" id="oneTimePrice">please call</label>
+                  </td>
+                  <td>
+                    <label for="oneTimeQuote" id="discountOnce">please call</label>
                   </td>
                 </tr>
 
@@ -128,36 +142,62 @@
             </div>
             </table>
 
-          <div class="formInputs">
-            <label for="first-name">First Name:</label>
-            <br>
-            <input  id="first-name" maxlength="20" type="text" name="first-name" placeholder="First Name">
-            <br>
-            <label for="last-name">Last Name:</label>
-            <br>
-            <input  id="last-name" maxlength="20" type="text" name="last-name" placeholder="Last Name">
-            <br>
-            <label for="email">Email:</label>
-            <br>
-            <input  id="email" maxlength="20" type="email" name="email"placeholder="Email">
-            <br>
-            <label for="phone-number">Phone Number:</label>
-            <br>
-            <input  id="phone-number" maxlength="20" type="tel" name="them-digits" placeholder="(555)555-555">
-          </div>
-          <button class="row submitBtn" id="submit-button" type="submit" >submit quote</button>
-          
-          </div>
-        </form>
+            <div class="row">
+              
+              <div class="col form-group">
+                <label for="first-name">First Name:</label>
+                <br>
+                <input  class="w-75" id="first-name" maxlength="20" type="text" name="first-name" placeholder="First Name">
+                <br>
+              </div>
 
-        <div id="finalDiv" class="jumbotron col-md-12 hideDiv">
-          <h1 class="title">Thanks!</h1>
-          <h5>A representative will contact you soon! </h5>
-          <button id="startBtn" class="submitBtn">www.xtrahandcleaning.com</button>
-          <button id="startBtn" class="submitBtn">www.nickwuerz.com</button>
-        </div>
+              <div class="col">
+                <label for="last-name">Last Name:</label>
+                <br>
+                <input  class="w-75" id="last-name" maxlength="20" type="text" name="last-name" placeholder="Last Name">
+                <br>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col">
+                <label for="email">Email:</label>
+                <br>
+                <input  class="w-75" id="email" maxlength="20" type="email" name="email"placeholder="you@example.com">
+                <br>
+              </div>
+  
+              <div class="col">
+                <label for="phone-number">Phone Number:</label>
+                <br>
+                <input  class="w-75" id="phone-number" maxlength="13" type="tel" name="them-digits" placeholder="(555)555-555">
+              </div>
+
+            </div> 
+          
+
+          <button class="submitBtn" id="submit-button" type="submit" >SUBMIT QUOTE</button>
+          
+        </form> 
 
     </div>
+
+    <div id="finalDiv" class="jumbotron col-md-12 hideDiv">
+      <h1 class="title">Thanks!</h1>
+      <h5>A representative will contact you soon! </h5>
+      
+      <h5>Back to
+        <a href="https://www.xtrahandcleaning.com">www.xtrahandcleaning.com</a>
+      </h5>
+
+      <h5>Need help building an app or website?
+      <a href="https://nwuerz-portfolio.herokuapp.com/" target="_blank">www.nickwuerz.com</a>
+      </h5>
+
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

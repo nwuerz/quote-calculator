@@ -14,7 +14,7 @@
   letter-spacing: 2px;
   border: currentColor;
   padding: 10px 30px;
-  margin: 30px auto;
+  margin: 30px auto 30px auto;
   text-align: center;
 }
 
@@ -39,9 +39,13 @@
   background-color: aliceblue;
 }
 
-.formInputs {
-  flex-direction: row;
-  align-items: stretch;
+table {
+  margin: auto;
+}
+
+.table-row:hover {
+  background-color: rgb(36, 36, 121);
+  color: white;
 }
 
 /* remove input arrows */
@@ -49,4 +53,12 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+label {
+  text-align: left;
+}
+
+h5 {
+  margin-bottom: 50px;
 }
