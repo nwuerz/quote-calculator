@@ -19,9 +19,6 @@ $(document).ready(() => {
   const petsDiv = $('#petsDiv');
   const loadingDiv = $('#loadingDiv');
   const quoteDiv = $('.quoteDiv');
-  const sfInput = $('#squareFeet');
-  const bedInput = $('#beds');
-  const bathInput = $('#baths');
   const finalDiv = $('#finalDiv');
 
   // table display elements
@@ -36,12 +33,16 @@ $(document).ready(() => {
   const onceTimeDiscounted = $('#discountOnce');
 
   // input values
+  const sfInput = $('#squareFeet');
+  const bedInput = $('#beds');
+  const bathInput = $('#baths');
   let cleanedRecently = true;
   let hasPets = true;
   let firstName = $('#first-name'); 
   let lastName = $('#last-name');
   let phoneNumber = $('#phone-number');
-
+  let email = $('#email');
+  let radioButtons = $('input[class="checkbox"]');
 
   // helper functions  //
   const toggleVisbility = (button, divToHide, divToShow) => {
@@ -127,17 +128,55 @@ $(document).ready(() => {
     });
   }
 
-  const verifyUserInfo = () => {
-    form.on('submit', (e) => {
-      console.log(`first name - ${firstName.val()}, last name - ${lastName.val()}, phone number ${phoneNumber.val()}`)
+  const verifyUserInfo = e => {
       if(firstName.val() === '' && lastName.val() === '' && phoneNumber.val().length < 10 ) {
         e.preventDefault();
-        alert('fill the form out the right way, you stupid piece of shit.');
-      } else {
-        e.preventDefault();
-        quoteDiv.attr('class', 'hideDiv');
-        finalDiv.attr('class', 'showDiv');
+        alert('please enter all required info!');
+      } 
+  }
+
+  const handleSubmit = () => {
+    form.on('submit', e => {
+      verifyUserInfo(e);
+
+      try {
+        $.ajax({
+          type: 'Post',
+          url: 'https://formspree.io/f/xvovdekj',
+          dataType: "json",
+          data: {
+            firstName: firstName.val(),
+            lastName: lastName.val(),
+            email: email.val(),
+            themDigitsTho: phoneNumber.val(),
+            squareFeet: sfInput.val(),
+            bedrooms: bedInput.val(),
+            baths: bathInput.val(),
+            cleanedRecently,
+            hasPets,
+            selectedQuote,
+            quoteWithDiscount
+          }
+        })
+      } catch (error) {
+        alert("Sorry, we couldn't submit your request. Please call (469) 418-0980")
+        console.log(error);
       }
+
+      e.preventDefault();
+      quoteDiv.attr('class', 'hideDiv');
+      finalDiv.attr('class', 'showDiv');
+
+    });
+  }
+
+  let selectedQuote = "";
+  let quoteWithDiscount = "";
+
+  const setChosenQuote = () => {
+    radioButtons.click(e => {
+      selectedQuote = e.target.parentElement.nextElementSibling.nextElementSibling.firstElementChild.textContent;
+      quoteWithDiscount = e.target.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.firstElementChild.textContent;
     });
   }
 
@@ -157,10 +196,9 @@ $(document).ready(() => {
       hasPets = false;
     });
     delayedVisibility(petsBtn, petsDiv, loadingDiv, quoteDiv);
-    // handleCheckboxClicks();
-    verifyUserInfo();
+    setChosenQuote()
+    handleSubmit();
   }
 
   init();
-
 });
