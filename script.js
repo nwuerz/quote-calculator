@@ -155,7 +155,8 @@ $(document).ready(() => {
             cleanedRecently,
             hasPets,
             selectedQuote,
-            quoteWithDiscount
+            quoteWithDiscount,
+            quoteType
           }
         })
       } catch (error) {
@@ -170,11 +171,15 @@ $(document).ready(() => {
     });
   }
 
+  let quoteType = "";
   let selectedQuote = "";
   let quoteWithDiscount = "";
 
   const setChosenQuote = () => {
     radioButtons.click(e => {
+      quoteType = e.target.parentElement.nextElementSibling.nextElementSibling.firstElementChild.id;
+      //remove "price" from string // 
+      quoteType = quoteType.substring(0, quoteType.length - 5);
       selectedQuote = e.target.parentElement.nextElementSibling.nextElementSibling.firstElementChild.textContent;
       quoteWithDiscount = e.target.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.firstElementChild.textContent;
     });
