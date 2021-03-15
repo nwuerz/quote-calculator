@@ -78,7 +78,7 @@ $(document).ready(() => {
     semiMonthlyPrice = (semiMonthlyPrice - (semiMonthlyPrice * cleanDiscount) + (semiMonthlyPrice * petTax)).toFixed(2);
     monthlyPrice = (monthlyPrice - (monthlyPrice * cleanDiscount) + (monthlyPrice * petTax)).toFixed(2);
 
-    let basePricing = [oneTimePrice, weeklyPrice, semiMonthlyPrice, monthlyPrice]
+    let basePricing = [weeklyPrice, semiMonthlyPrice, monthlyPrice, oneTimePrice]
     let discountedPricing = applyDiscount(basePricing);
 
     return [basePricing, discountedPricing];
