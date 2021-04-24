@@ -1,208 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="X-tra hand quote-calculator allows users to quickly calculate and submit quotes for home and commercial cleaning."
-    />
-    <title>X-Tra Hand Quote Calculator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
 
-    <div class="container">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="X-tra hand quote-calculator allows users to quickly calculate and submit quotes for home and commercial cleaning." />
+  <title>X-Tra Hand Quote Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+</head>
 
-        <div id="startDiv" class="jumbotron col-md-12">
-          <h1 class="title">X-Tra Hand Cleaning Quote Calculator</h1>
-          <h5>Answer a few quick questions to get a quote!</h5>
-          <button id="startBtn" class="submitBtn">GET STARTED</button>
-        </div>
+<body>
 
-        <div id="sfDiv" class="jumbotron col-md-12 hideDiv">
-          <h2 class="title">What's your approximate square footage?</h2>
-          <input type="number" id="squareFeet"/>
-          <button id="sfBtn" class="row submitBtn" disabled>NEXT</button>
-        </div>
+  <div class="container">
 
-        <div id="bedsDiv" class="jumbotron col-md-12 hideDiv">
-            <h2 class="title">How many bedrooms?</h2>
-            <input type="number" id="beds" maxlength="2" />
-            <button id="bedsBtn" class="row submitBtn" disabled>NEXT</button>
-        </div>
-
-        <div id="bathsDiv" class="jumbotron col-md-12 hideDiv">
-            <h2 class="title">How many bathrooms?</h2>
-            <input type="number" id="baths" maxlength="2" />
-            <button id="bathsBtn" class="row submitBtn" disabled>NEXT</button>
-        </div>
-
-        <div id="previousDiv" class="jumbotron col-md-12 hideDiv">
-            <h2 >Has your property been professionally cleaned in the past 2 months?</h2>
-            <button class="submitBtn previousBtn">YES</button>
-            <button id="cleanedRecently" class="submitBtn previousBtn">NO</button>
-        </div>
-
-        <div id="petsDiv" class="jumbotron col-md-12 hideDiv">
-            <h2 >Do you have animals?</h2>
-            <button class="submitBtn petsBtn">YES</button>
-            <button id="hasPets" class="submitBtn petsBtn">NO</button>
-        </div>
-
-        <div id="loadingDiv" class="jumbotron col-md-12 hideDiv">
-            <h2 >Got it! One moment while we crunch the numbers...</h2>
-            <div id="spinner" class="spinner-border" role="status">
-            </div>
-        </div>
-
-          <!-- <form   action="https://formspree.io/f/xvovdekj" method="POST"> -->
-        <form class="quoteDiv hideDiv">
-          
-          <div class="jumbotron col-md-12">
-            <h2>Recieve an additional 15% discount off of your first cleaning when you purchase within the next 5 days!</h2>
-            <p>Offer valid for first cleaning. Cannot be combined with other offers.</p>
-            <table class="table">
-              <div class="form-check">
-              
-                <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Frequency</th>
-                  <th scope="col">Price Per Cleaning</th>
-                  <th scope="col">Discounted Price</th>
-                </tr>
-              </thead>
-              
-              <tbody>
-                <!-- weekly row -->
-                <tr class="table-row">
-                  <td>
-                    <input id="weeklyQuote" name="radio-input" class="checkbox" type="radio">
-                  </td>
-                  <td>
-                    <label for="weeklyQuote">Weekly</label>
-                  </td>
-                  <td>
-                    <label for="weeklyQuote" id="weeklyPrice">please call</label>
-                  </td>
-                  <td>
-                    <label for="weeklyQuote" id="discountWeekly">please call</label> 
-                  </td>
-                </tr>
-                <!-- semi monthly row -->
-                <tr class="table-row">
-                  <td>
-                    <input id="semiMonthlyQuote" name="radio-input" class="checkbox" type="radio">
-                  </td>
-                  <td>
-                    <label style="display: inline" for="semiMonthlyQuote">Semi Monthly</label>
-                  </td>
-                  <td>
-                    <label for="semiMonthlyQuote" id="semiMonthlyPrice">please call</label>
-                  </td>
-                  <td>
-                    <label for="semiMonthlyQuote" id="discountSemiMonthly">please call</label>
-                  </td>
-                </tr>
-                <!-- monthly row -->
-                <tr class="table-row">
-                  <td>
-                    <input id="monthlyQuote" name="radio-input" class="checkbox" type="radio">
-                  </td>
-                  <td>
-                    <label for="monthlyQuote">Monthly</label>
-                  </td>
-                  <td>
-                    <label for="monthlyQuote" id="monthlyPrice">please call</label>
-                  </td>
-                  <td>
-                    <label for="monthlyQuote" id="discountMonthly">please call</label>
-                  </td>
-                </tr>
-                <!-- one time row -->
-                <tr class="table-row">
-                  <td>
-                    <input id="oneTimeQuote" name="radio-input" class="checkbox" type="radio">
-                  </td>
-                  <td>
-                    <label for="oneTimeQuote">Initial Deep Cleaning/One Time Deep Cleaning</label>
-                  </td>
-                  <td>
-                    <label for="oneTimeQuote" id="oneTimePrice">please call</label>
-                  </td>
-                  <td>
-                    <label for="oneTimeQuote" id="discountOnce">please call</label>
-                  </td>
-                </tr>
-
-              </tbody>
-            </div>
-            </table>
-
-            <div class="row">
-              
-              <div class="col form-group">
-                <label for="first">First Name:</label>
-                <br>
-                <input  class="w-75" id="first-name" maxlength="20" type="text" name="first" placeholder="First Name">
-                <br>
-              </div>
-
-              <div class="col">
-                <label for="last">Last Name:</label>
-                <br>
-                <input  class="w-75" id="last-name" maxlength="20" type="text" name="last" placeholder="Last Name">
-                <br>
-              </div>
-
-            </div>
-
-            <div class="row">
-
-              <div class="col">
-                <label for="email">Email:</label>
-                <br>
-                <input id="email" class="w-75" id="email" maxlength="40" type="email" name="email" placeholder="you@example.com">
-                <br>
-              </div>
-  
-              <div class="col">
-                <label for="phone">Phone Number:</label>
-                <br>
-                <input  class="w-75" id="phone-number" maxlength="13" type="tel" name="phone" placeholder="(555)555-555">
-              </div>
-
-            </div> 
-          
-
-          <button class="submitBtn" id="submit-button" type="submit" >SUBMIT QUOTE</button>
-          
-        </form> 
-
+    <div id="startDiv" class="jumbotron col-md-12">
+      <h1 class="title">X-Tra Hand Cleaning Quote Calculator</h1>
+      <h5>Answer a few quick questions to get your free quote!</h5>
+      <button id="startBtn" class="submitBtn">GET STARTED</button>
     </div>
+
+    <div id="sfDiv" class="jumbotron col-md-12 hideDiv">
+      <div class="progress col-md-6" style="margin:auto; margin-bottom: 10px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 17%;"
+          aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <h2 class="title">What's your approximate square footage?</h2>
+      <input type="number" id="squareFeet" />
+      <button id="sfBtn" class="row submitBtn" disabled>NEXT</button>
+    </div>
+
+    <div id="bedsDiv" class="jumbotron col-md-12 hideDiv">
+      <div class="progress col-md-6" style="margin:auto; margin-bottom: 10px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 34%;"
+          aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <h2 class="title">How many bedrooms?</h2>
+      <input type="number" id="beds" maxlength="2" />
+      <button id="bedsBtn" class="row submitBtn" disabled>NEXT</button>
+    </div>
+
+    <div id="bathsDiv" class="jumbotron col-md-12 hideDiv">
+      <div class="progress col-md-6" style="margin:auto; margin-bottom: 10px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 51%;"
+          aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <h2 class="title">How many bathrooms?</h2>
+      <input type="number" id="baths" maxlength="2" />
+      <button id="bathsBtn" class="row submitBtn" disabled>NEXT</button>
+    </div>
+
+    <div id="previousDiv" class="jumbotron col-md-12 hideDiv">
+      <div class="progress col-md-6" style="margin:auto; margin-bottom: 10px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 68%;"
+          aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <h2>Has your property been professionally cleaned in the past 2 months?</h2>
+      <button class="submitBtn previousBtn">YES</button>
+      <button id="cleanedRecently" class="submitBtn previousBtn">NO</button>
+    </div>
+
+    <div id="petsDiv" class="jumbotron col-md-12 hideDiv">
+      <div class="progress col-md-6" style="margin:auto; margin-bottom: 10px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 85%;"
+          aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <h2>Do you have animals?</h2>
+      <button class="submitBtn petsBtn">YES</button>
+      <button id="hasPets" class="submitBtn petsBtn">NO</button>
+    </div>
+
+    <!-- <form   action="https://formspree.io/f/xvovdekj" method="POST"> -->
+    <form>
+
+      <div class="jumbotron customer-input hideDiv">
+        <div class="progress col-md-6" style="margin:auto; margin-bottom: 10px;">
+          <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 98%;" aria-valuenow="10"
+            aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="row">
+          <h2>Thanks! Just a few more details and we'll get your quote!</h2>
+
+          <div class="col form-group">
+            <label for="first">First Name:</label>
+            <br>
+            <input class="w-75" id="first-name" maxlength="20" type="text" name="first" placeholder="First Name">
+            <br>
+          </div>
+
+          <div class="col">
+            <label for="last">Last Name:</label>
+            <br>
+            <input class="w-75" id="last-name" maxlength="20" type="text" name="last" placeholder="Last Name">
+            <br>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col">
+            <label for="email">Email:</label>
+            <br>
+            <input id="email" class="w-75" id="email" maxlength="40" type="email" name="email"
+              placeholder="you@example.com">
+            <br>
+          </div>
+
+          <div class="col">
+            <label for="phone">Phone Number:</label>
+            <br>
+            <input class="w-75" id="phone-number" maxlength="13" type="tel" name="phone" placeholder="(555)555-555">
+          </div>
+
+        </div>
+
+        <button class="submitBtn" id="customerStuffBtn" type="button">NEXT</button>
+      </div>
+
+      <div id="loadingDiv" class="jumbotron col-md-12 hideDiv">
+        <h2>Got it! One moment while we crunch the numbers...</h2>
+        <div id="spinner" class="spinner-border" role="status">
+        </div>
+      </div>
+
+      <div class="quoteDiv hideDiv">
+        <h2>Recieve an additional 15% discount off of your first cleaning when you purchase within the next 5 days!</h2>
+        <p>Offer valid for first cleaning. One time use only, cannot be combined with other offers.</p>
+        <table class="table">
+          <div class="form-check">
+
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Price Per Cleaning</th>
+                <th scope="col">Discounted Price</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- weekly row -->
+              <tr class="table-row">
+                <td>
+                  <input id="weeklyQuote" name="radio-input" class="checkbox" type="radio">
+                </td>
+                <td>
+                  <label for="weeklyQuote">Weekly</label>
+                </td>
+                <td>
+                  <label for="weeklyQuote" id="weeklyPrice">please call</label>
+                </td>
+                <td>
+                  <label for="weeklyQuote" id="discountWeekly">please call</label>
+                </td>
+              </tr>
+              <!-- semi monthly row -->
+              <tr class="table-row">
+                <td>
+                  <input id="semiMonthlyQuote" name="radio-input" class="checkbox" type="radio">
+                </td>
+                <td>
+                  <label style="display: inline" for="semiMonthlyQuote">Semi Monthly</label>
+                </td>
+                <td>
+                  <label for="semiMonthlyQuote" id="semiMonthlyPrice">please call</label>
+                </td>
+                <td>
+                  <label for="semiMonthlyQuote" id="discountSemiMonthly">please call</label>
+                </td>
+              </tr>
+              <!-- monthly row -->
+              <tr class="table-row">
+                <td>
+                  <input id="monthlyQuote" name="radio-input" class="checkbox" type="radio">
+                </td>
+                <td>
+                  <label for="monthlyQuote">Monthly/One Time General Cleaning</label>
+                </td>
+                <td>
+                  <label for="monthlyQuote" id="monthlyPrice">please call</label>
+                </td>
+                <td>
+                  <label for="monthlyQuote" id="discountMonthly">please call</label>
+                </td>
+              </tr>
+              <!-- one time row -->
+              <tr class="table-row">
+                <td>
+                  <input id="oneTimeQuote" name="radio-input" class="checkbox" type="radio">
+                </td>
+                <td>
+                  <label for="oneTimeQuote">Initial Deep Cleaning/One Time Deep Cleaning</label>
+                </td>
+                <td>
+                  <label for="oneTimeQuote" id="oneTimePrice">please call</label>
+                </td>
+                <td>
+                  <label for="oneTimeQuote" id="discountOnce">please call</label>
+                </td>
+              </tr>
+
+            </tbody>
+          </div>
+        </table>
+        <button class="submitBtn" id="submit-button" type="submit">SUBMIT QUOTE</button>
+      </div>
+
+    </form>
 
     <div id="finalDiv" class="jumbotron col-md-12 hideDiv">
       <h1 class="title">Thanks!</h1>
       <h5>A representative will contact you soon! </h5>
-      
+
       <h5>Back to
         <a href="https://www.xtrahandcleaning.com">www.xtrahandcleaning.com</a>
       </h5>
 
       <h5>Need help building an app or website?
-      <a href="https://nwuerz-portfolio.herokuapp.com/" target="_blank">www.nickwuerz.com</a>
+        <a href="https://nwuerz-portfolio.herokuapp.com/" target="_blank">www.nickwuerz.com</a>
       </h5>
 
     </div>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+
+  <script src="script.js"></script>
+</body>
+
 </html>

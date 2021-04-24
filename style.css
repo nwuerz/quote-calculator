@@ -5,6 +5,8 @@
 
 .jumbotron {
   background-color: aliceblue;
+  border-radius: 0.5rem;
+  padding: 10px;
 }
 
 .submitBtn {
@@ -16,6 +18,11 @@
   padding: 10px 30px;
   margin: 30px auto 30px auto;
   text-align: center;
+  border-radius: 0.5rem;
+}
+
+.submitBtn:focus {
+  box-shadow: 0 0 5pt 3pt rgb(58, 58, 196);
 }
 
 .submitBtn:hover {
@@ -61,4 +68,8 @@ label {
 
 h5 {
   margin-bottom: 50px;
+}
+
+.progress-bar {
+  background-color: rgb(36, 36, 121);
 }

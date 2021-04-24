@@ -9,6 +9,7 @@ $(document).ready(() => {
   const hasPetsBtn = $('#hasPets');
   const previousBtn = $('.previousBtn');
   const petsBtn = $('.petsBtn');
+  const CustomerInfoBtn = $('#customerStuffBtn');
   
   // divs
   const startDiv = $('#startDiv');
@@ -20,6 +21,7 @@ $(document).ready(() => {
   const loadingDiv = $('#loadingDiv');
   const quoteDiv = $('.quoteDiv');
   const finalDiv = $('#finalDiv');
+  const userDetails = $('.customer-input');
 
   // table display elements
   const form = $('form');
@@ -48,7 +50,7 @@ $(document).ready(() => {
   const toggleVisbility = (button, divToHide, divToShow) => {
     button.on('click', () => {
       divToHide.attr('class', 'hideDiv');
-      divToShow.attr('class', 'showDiv');
+      divToShow.removeClass('hideDiv');
     })
   }
 
@@ -113,7 +115,7 @@ $(document).ready(() => {
   const delayedVisibility = (button, divToHide, divToShow, delayedDiv) => {
     button.on('click', () => {
       divToHide.attr('class', 'hideDiv');
-      divToShow.attr('class', 'showDiv');
+      divToShow.removeClass('hideDiv');
       setTimeout(() => {
         divToShow.attr('class', 'hideDiv');
         delayedDiv.attr('class', 'showDiv quoteDiv');
@@ -124,7 +126,7 @@ $(document).ready(() => {
 
   const enableButton = (input, button) => {
     input.on('keyup', () => {
-      button.attr('disabled', false);
+      input.val() ? button.attr('disabled', false) : null;
     });
   }
 
@@ -166,7 +168,7 @@ $(document).ready(() => {
 
       e.preventDefault();
       quoteDiv.attr('class', 'hideDiv');
-      finalDiv.attr('class', 'showDiv');
+      finalDiv.removeClass('hideDiv');
 
     });
   }
@@ -200,9 +202,12 @@ $(document).ready(() => {
     hasPetsBtn.on('click', () => {
       hasPets = false;
     });
-    delayedVisibility(petsBtn, petsDiv, loadingDiv, quoteDiv);
-    setChosenQuote()
-    handleSubmit();
+    toggleVisbility(petsBtn, petsDiv, userDetails)
+    if(firstName && lastName && email && phoneNumber){
+      delayedVisibility(CustomerInfoBtn, userDetails, loadingDiv, quoteDiv);
+      setChosenQuote()
+      handleSubmit();
+    }
   }
 
   init();
