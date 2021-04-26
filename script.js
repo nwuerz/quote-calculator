@@ -130,16 +130,21 @@ $(document).ready(() => {
     });
   }
 
-  const verifyUserInfo = e => {
-      if(firstName.val() === '' && lastName.val() === '' && phoneNumber.val().length < 10 ) {
-        e.preventDefault();
-        alert('please enter all required info!');
+  const verifyUserInfo = () => {
+    userDetails.on('keyup', () => {
+      console.log(firstName.val())
+      console.log(phoneNumber.val())
+      console.log(email.val())
+      console.log(lastName.val())
+      if(firstName.val() && lastName.val() && phoneNumber.val().length === 10 && email.val()) {
+        CustomerInfoBtn.attr('disabled', false)
+        delayedVisibility(CustomerInfoBtn, userDetails, loadingDiv, quoteDiv);
       } 
+    });
   }
 
   const handleSubmit = () => {
     form.on('submit', e => {
-      verifyUserInfo(e);
 
       try {
         $.ajax({
@@ -203,11 +208,9 @@ $(document).ready(() => {
       hasPets = false;
     });
     toggleVisbility(petsBtn, petsDiv, userDetails)
-    if(firstName && lastName && email && phoneNumber){
-      delayedVisibility(CustomerInfoBtn, userDetails, loadingDiv, quoteDiv);
-      setChosenQuote()
-      handleSubmit();
-    }
+    verifyUserInfo();
+    setChosenQuote()
+    handleSubmit();
   }
 
   init();
