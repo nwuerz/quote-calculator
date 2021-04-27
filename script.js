@@ -52,6 +52,12 @@ $(document).ready(() => {
       divToHide.attr('class', 'hideDiv');
       divToShow.removeClass('hideDiv');
     })
+    // divToHide.on('keyup', e => {
+    //   if(e.key === 'Enter') {
+    //     divToHide.attr('class', 'hideDiv');
+    //     divToShow.removeClass('hideDiv');
+    //   }
+    // })
   }
 
   const calculatePrices = () => {
