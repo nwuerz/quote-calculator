@@ -30,7 +30,7 @@
 
   <div class="container">
 
-    <div id="startDiv" class="jumbotron col-md-12">
+    <div id="startDiv" class="jumbotron col-md-12 hideDiv">
       <h1 class="title">X-Tra Hand Cleaning Quote Calculator</h1>
       <h5>Answer a few quick questions to get your free quote!</h5>
       <button id="startBtn" class="submitBtn">GET STARTED</button>
@@ -94,7 +94,7 @@
     <!-- <form   action="https://formspree.io/f/xvovdekj" method="POST"> -->
     <form>
 
-      <div class="jumbotron customer-input hideDiv">
+      <div class="jumbotron customer-input ">
         <div class="progress col-md-6" style="margin:auto; margin-bottom: 10px;">
           <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 98%;" aria-valuenow="10"
             aria-valuemin="0" aria-valuemax="100"></div>
@@ -105,14 +105,16 @@
           <div class="col form-group">
             <label for="first">First Name:</label>
             <br>
-            <input class="w-75" id="first-name" maxlength="20" type="text" name="first" placeholder="First Name">
+            <input class="col-sm-12 col-md-6 col-lg-8" id="first-name" maxlength="20" type="text" name="first"
+              placeholder="First Name">
             <br>
           </div>
 
           <div class="col">
             <label for="last">Last Name:</label>
             <br>
-            <input class="w-75" id="last-name" maxlength="20" type="text" name="last" placeholder="Last Name">
+            <input class="col-sm-12 col-md-6 col-lg-8" id="last-name" maxlength="20" type="text" name="last"
+              placeholder="Last Name">
             <br>
           </div>
 
@@ -123,7 +125,7 @@
           <div class="col">
             <label for="email">Email:</label>
             <br>
-            <input id="email" class="w-75" id="email" maxlength="40" type="email" name="email"
+            <input id="email" class="col-sm-12 col-md-6 col-lg-8" id="email" maxlength="40" type="email" name="email"
               placeholder="you@example.com">
             <br>
           </div>
@@ -131,7 +133,8 @@
           <div class="col">
             <label for="phone">Phone Number:</label>
             <br>
-            <input class="w-75" id="phone-number" maxlength="13" type="number" name="phone" placeholder="(555)555-555">
+            <input class="col-sm-12 col-md-6 col-lg-8" id="phone-number" maxlength="13" type="number" name="phone"
+              placeholder="(555)555-555">
           </div>
 
         </div>
